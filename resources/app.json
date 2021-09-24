@@ -1,0 +1,234 @@
+[
+  {
+    "appName": "Data Collection Tool",
+    "gitUrls": [
+      "https://gitscm.cisco.com/projects/LEARNINGATCISCO/repos/discount-program"
+    ]
+  },
+  {
+    "appName": "Cairo",
+    "gitUrls": [
+      "https://wwwin-github.cisco.com/LearningAtCisco/Cairo"
+    ]
+  },
+  {
+    "appName": "Cisco Customer Loyalty",
+    "gitUrls": [
+      "https://gitscm.cisco.com/projects/LEARNINGATCISCO/repos/crtmgr"
+    ]
+  },
+  {
+    "appName": "Certified Instructor Management System (CIMS)",
+    "gitUrls": [
+      "https://gitscm.cisco.com/projects/LEARNINGATCISCO/repos/cims"
+    ]
+  },
+  {
+    "appName": "Cisco Learning Locator (CLL)",
+    "gitUrls": [
+      "https://gitscm.cisco.com/projects/LEARNINGATCISCO/repos/cll"
+    ]
+  },
+  {
+    "appName": "Cisco Learning System",
+    "gitUrls": [
+      "https://gitscm.cisco.com/projects/LEARNINGATCISCO/repos/cls_saba_77"
+    ]
+  },
+  {
+    "appName": "Continuing Education",
+    "gitUrls": [
+      "https://gitscm.cisco.com/projects/LEARNINGATCISCO/repos/continuing-education"
+    ]
+  },
+  {
+    "appName": "Data Collection Tool",
+    "gitUrls": [
+      "https://gitscm.cisco.com/projects/LEARNINGATCISCO/repos/discount-program"
+    ]
+  },
+  {
+    "appName": "Derivative Works",
+    "gitUrls": [
+      "https://gitscm.cisco.com/projects/LEARNINGATCISCO/repos/drworks"
+    ]
+  },
+  {
+    "appName": "FastPass SSO",
+    "gitUrls": [
+      "https://wwwin-github.cisco.com/LearningAtCisco/FastPass"
+    ]
+  },
+  {
+    "appName": "GitGuardian",
+    "gitUrls": [
+      "https://www-github.cisco.com/LC-HTDBizApps/iaac-gitscan"
+    ]
+  },
+  {
+    "appName": "Gryphon",
+    "gitUrls": [
+      "https://wwwin-github.cisco.com/LearningAtCisco/Gryphon"
+    ]
+  },
+  {
+    "appName": "Jasper",
+    "gitUrls": [
+      "https://wwwin-github.cisco.com/LearningAtCisco/Temujin"
+    ]
+  },
+  {
+    "appName": "HTDBizApps - BDM Dashboard",
+    "gitUrls": [
+      "https://www-github.cisco.com/LC-HTDBizApps/learning-advisor-dashboard"
+    ]
+  },
+  {
+    "appName": "HTDBizApps - Financial Forecasting Tool",
+    "gitUrls": [
+      "https://www-github.cisco.com/LC-HTDBizApps/financial-forecast"
+    ]
+  },
+  {
+    "appName": "HTDBizApps - SOARS",
+    "gitUrls": [
+      "https://www-github.cisco.com/LC-HTDBizApps/sales-operations-accounting-resources-system",
+      "https://www-github.cisco.com/LC-HTDBizApps/sales-operations-accounting-resources-system-dashboard"
+    ]
+  },
+  {
+    "appName": "Learning Credits Management Tool (LCMT)",
+    "gitUrls": [
+      "https://gitscm.cisco.com/projects/LEARNINGATCISCO/repos/lcmt"
+    ]
+  },
+  {
+    "appName": "Learning Partner Management System (LPMS)",
+    "gitUrls": [
+      "https://gitscm.cisco.com/projects/LEARNINGATCISCO/repos/lpms2.0"
+    ]
+  },
+  {
+    "appName": "Marketo - Learning at Cisco",
+    "gitUrls": [
+      "https://gitscm.cisco.com/projects/LEARNINGATCISCO/repos/tes_marketo_feed"
+    ]
+  },
+  {
+    "appName": "Opal",
+    "gitUrls": [
+      "https://wwwin-github.cisco.com/LearningAtCisco/Opal"
+    ]
+  },
+  {
+    "appName": "Solomon Analytics Portal",
+    "gitUrls": [
+      "https://wwwin-github.cisco.com/LearningAtCisco/portal"
+    ]
+  },
+  {
+    "appName": "Solomon Analytics Portal",
+    "gitUrls": [
+      "https://wwwin-github.cisco.com/LearningAtCisco/portal"
+    ]
+  },
+  {
+    "appName": "Thar",
+    "gitUrls": [
+      "https://wwwin-github.cisco.com/LearningAtCisco/Thar"
+    ]
+  },
+  {
+    "appName": "Training Certification Management Service (TCMS)",
+    "gitUrls": [
+      "https://gitscm.cisco.com/projects/LEARNINGATCISCO/repos/tcms"
+    ]
+  },
+  {
+    "appName": "Vulcan - Cisco Digital Learning",
+    "gitUrls": [
+      "https://wwwin-github.cisco.com/vulcan/vulcan"
+    ]
+  },
+  {
+    "appName": "CLN Metrics Webex Teams Bot",
+    "gitUrls": [
+      "https://wwwin-github.cisco.com/learning-platform/cln-metrics-webex-teams-bot"
+    ]
+  },
+  {
+    "appName": "Customer SSOT",
+    "gitUrls": [
+      "https://wwwin-github.cisco.com/DevNet/customerssot"
+    ]
+  },
+  {
+    "appName": "Instance Service",
+    "gitUrls": [
+      "https://wwwin-github.cisco.com/learning-platform/instance-service", "https://wwwin-github.cisco.com/DevNet/instance"
+    ]
+  },
+  {
+    "appName": "LAC RPA",
+    "gitUrls": [
+      "https://gitscm.cisco.com/projects/LACRPA"
+    ]
+  },
+  {
+    "appName": "Learner SSOT and Content Tagging Services",
+    "gitUrls": [
+      "https://wwwin-github.cisco.com/DevNet/ldsprofileservices",
+      "https://wwwin-github.cisco.com/DevNet/learning-content-tagger",
+      "https://wwwin-github.cisco.com/DevNet/nlptaggerservices",
+      "https://wwwin-github.cisco.com/LearningAtCisco/ldsservices"
+    ]
+  },
+  {
+    "appName": "Learning Build Provisioning Service",
+    "gitUrls": [
+      "https://wwwin-github.cisco.com/learning-platform/build-provisioning-service"
+    ]
+  },
+  {
+    "appName": "HTDBizApps - CGT Services",
+    "gitUrls": [
+      "https://wwwin-github.cisco.com/DevNet/contract"
+    ]
+  },
+  {
+    "appName": "HTDBizApps - E-Service Training",
+    "gitUrls": [
+      "https://www-github.cisco.com/LC-CDS/ESTVendorManagement-portlet",
+      "https://www-github.cisco.com/LC-CDS/ESTDataUpstreamDataController",
+      "https://www-github.cisco.com/LC-CDS/APIGateway",
+      "https://www-github.cisco.com/LC-CDS/ESTALPNotificationPushEngine",
+      "https://www-github.cisco.com/LC-CDS/DBLayer",
+      "https://www-github.cisco.com/LC-CDS/eaas_cmis_proxy",
+      "https://www-github.cisco.com/LC-CDS/ESTUserManagement-portlet",
+      "https://www-github.cisco.com/LC-CDS/estopt-theme",
+      "https://www-github.cisco.com/LC-CDS/ESTTicketManagementSystem-portlet",
+      "https://www-github.cisco.com/LC-CDS/ESTQuestionBank-portlet",
+      "https://www-github.cisco.com/LC-CDS/ESTReportsV2",
+      "https://www-github.cisco.com/LC-CDS/TPMReports",
+      "https://www-github.cisco.com/LC-CDS/ESTProfile-portlet",
+      "https://www-github.cisco.com/LC-CDS/ESTCategoryManager-portlet",
+      "https://www-github.cisco.com/LC-CDS/ESTReportsRLP",
+      "https://www-github.cisco.com/LC-CDS/ESTCCTExamReports-portlet",
+      "https://www-github.cisco.com/LC-CDS/SurveyLaunch-portlet",
+      "https://www-github.cisco.com/LC-CDS/SurveyAdmin-portlet",
+      "https://www-github.cisco.com/LC-CDS/SurveyReports-portlet",
+      "https://www-github.cisco.com/LC-CDS/LearningModule-portlet",
+      "https://www-github.cisco.com/LC-CDS/LPPortlet-portlet",
+      "https://www-github.cisco.com/LC-CDS/LearningModuleView-portlet",
+      "https://www-github.cisco.com/LC-CDS/ILP-portlet",
+      "https://www-github.cisco.com/LC-CDS/ESTCustomAssetSearch-portlet"
+    ]
+  },
+  {
+    "appName": "LAC Security Risk Profiler Dashboard",
+    "gitUrls": [
+      "https://www-github.cisco.com/LC-SecurityDPP/cyber-security-data-aggregator",
+      "https://www-github.cisco.com/LC-SecurityDPP/application-profiler"
+    ]
+  }
+]

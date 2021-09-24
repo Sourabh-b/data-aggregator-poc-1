@@ -1,0 +1,56 @@
+---
+application_table_name: "TBL_APPLICATION"
+threatmodel_table_name: "TBL_THREATMODEL"
+git_base_data_table_name: "TBL_GIT_DETAILS"
+git_language_table_name: "TBL_GIT_LANGUAGE"
+git_contributions_table_name: "TBL_GIT_CONTRIBUTIONS"
+uuid_char_len: 30
+git_basic_csv: git_details.csv
+git_language_csv: git_language.csv
+git_contributors: git_contributors.csv
+threatmodel:
+   threatmodel_done: "Yes"
+   threatmodel_status: "Is_threat_modeling_done__c"
+   threatmodel_date: "Last_threat_modeling_date__c"
+install_type:
+   sf_field: 'Deployed_On__c'
+   Externally Hosted: 'AWS'
+   On Premise: 'On Premise'
+   External SaaS: 'Salesforce'
+   on_premise: 'On Premise'
+   External PaaS : 'External PaaS'
+   External IaaS : 'External IaaS'
+op_status:
+   sf_field: "Application_Lifecycle__c"
+   Pipeline: 'Pilot'
+   Retired: 'EOL'
+   Operational: 'Production'
+application_owner: 'Transient_Application_Owner__c'
+psa_field_name: 'Transient_Security_Advocate__c'
+es_field_name: 'Transient_Executive_Sponsor__c'
+business_criticality:
+   field_name : "Business_Criticality__c"
+   col1 : "C1-Mission Imperative - 99.999%"
+   col2 : "C2-Mission Critical - 99.99%"
+   col3 : "C3-Business Critical - 99.9%"
+   col4 : "C4-Business Operational - 99%"
+   col5 : "C5-Business Administrative - 98%"
+esp_data:
+   install_type:
+      - "Externally Hosted"
+      - "On Premise"
+      - "External SaaS"
+      - "on_premise"
+      - "External PaaS"
+      - "External IaaS"
+   op_status:
+      - "Pipeline"
+      - "Retired"
+      - "Operational"
+   business_criticality:
+      - 'C1'
+      - 'C2'
+      - 'C3'
+      - 'C4'
+      - 'C5'
+
