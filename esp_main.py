@@ -15,4 +15,4 @@ sf = sf_auth(username_salesforce, password_salesforce, security_token, client_id
 if __name__ == '__main__':
     app_data = get_apps(esp_url, auth)
     insert_into_db(app_data, esp_app_detail, business_criticality, db, auth)
-    #push_to_sfdc(app_table_name, sf, db)
+    push_to_sfdc(app_table_name, sf, db)

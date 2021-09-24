@@ -2,9 +2,13 @@ import sqlite3
 import datetime
 import hashlib
 import yaml
-import csv
-from src.utility.log.logs import *
+from src.aop.logs.log_error import LogError
+from src.aop.logs.log_msg import LogMsgs
+from src.aop.logs.log_warning import LogWarning
 
+logerror = LogError()
+logmsgs = LogMsgs()
+logwarning = LogWarning()
 
 stream = open("settings/config_data.yml")
 dictionary = yaml.load(stream, Loader=yaml.BaseLoader)
@@ -37,9 +41,9 @@ class DbOperation:
 
         # if the count is 1, then table exists
         if self.cursor.fetchone()[0] == 1:
-            logs_msg('{0} Table is present'.format(table_name))
+            logmsgs.logs_msg('{0} Table is present'.format(table_name))
         else:
-            logs_msg("{0} Table is not present, creating one.....".format(table_name))
+            logmsgs.logs_msg("{0} Table is not present, creating one.....".format(table_name))
             self.cursor.execute("CREATE TABLE {0} {1}".format(table_name, query))
 
     def update(self, table_name: str = None, app_name: str = None, last_updated: str = None, op_status: str = None,
@@ -52,9 +56,9 @@ class DbOperation:
             app_name, git_urls, psa_user_name, psa_name, es_user_name, es_name)
         result = self.cursor.execute(query)
         if result.arraysize:
-            logs_msg('Table row updated successfully')
+            logmsgs.logs_msg('Table row updated successfully')
         else:
-            logs_warning('Table row NOT updated successfully')
+            logwarning.logs_warning('Table row NOT updated successfully')
 
     def insert(self, table_name: str = None, uuid: str = None, name: str = None, updated_at: str = None,
                op_status: str = None, install_type: str = None,
@@ -68,9 +72,9 @@ class DbOperation:
             psa_user_name, psa_name, es_user_name, es_name)
         result = self.cursor.execute(query, values)
         if result.arraysize:
-            logs_msg('New value inserted successfully into the table')
+            logmsgs.logs_msg('New value inserted successfully into the table')
         else:
-            logs_warning('Failed to insert new value into the table')
+            logwarning.logs_warning('Failed to insert new value into the table')
 
     def update_table(self, table_name: str = None, uuid: str = None, app: str = None, last_updated: str = None,
                      op_status: str = None, install_type: str = None,
@@ -97,9 +101,9 @@ class DbOperation:
             updated_by)
         result = self.cursor.execute(query)
         if result.arraysize:
-            logs_msg('Table row updated successfully')
+            logmsgs.logs_msg('Table row updated successfully')
         else:
-            logs_warning('Table row NOT updated successfully')
+            logwarning.logs_warning('Table row NOT updated successfully')
 
     def git_base_insert(self, table_name=None, app_name=None, app_id=None, git_details=None, updated_at=None, updated_by=None):
         try:
@@ -108,11 +112,11 @@ class DbOperation:
                       updated_by)
             result = self.cursor.execute(query, values)
             if result.arraysize:
-                logs_msg('New value inserted successfully into the table')
+                logmsgs.logs_msg('New value inserted successfully into the table')
             else:
-                logs_warning('Failed to insert new value into the table')
+                logwarning.logs_warning('Failed to insert new value into the table')
         except Exception as e:
-            logs_error("Error: " + str(e))
+            logerror.logs_error("Error: " + str(e))
 
     def update_git_base_table(self, table_name: str = None, app: str = None, app_id=None, git_details=None, updated_at=None, updated_by=None):
         data_fetch = "select application_name from {0};".format(table_name)
@@ -128,7 +132,7 @@ class DbOperation:
             try:
                 self.git_base_insert(table_name, app, app_id, git_details, updated_at, updated_by)
             except Exception as e:
-                logs_error("Not inserted " + str(e))
+                logerror.logs_error("Not inserted " + str(e))
         self.sqliteConnection.commit()
 
     def git_language_table_update(self, table_name=None, app=None, app_id=None, loc=None, git_language_details=None):
@@ -147,16 +151,16 @@ class DbOperation:
                 self.git_language_insert(table_name, app, app_id,
                                          loc, git_language_details)
             except Exception as e:
-                logs_error("Not inserted " + str(e))
+                logerror.logs_error("Not inserted " + str(e))
 
     def git_language_update(self, table_name, app, app_id, loc, git_language_details):
         query = "UPDATE '{0}' SET app_id='{2}', git_language='{3}', loc={4} WHERE application_name='{1}';".format(
             table_name, app, app_id, git_language_details, loc)
         result = self.cursor.execute(query)
         if result.arraysize:
-            logs_msg('Table row updated successfully')
+            logmsgs.logs_msg('Table row updated successfully')
         else:
-            logs_warning('Table row NOT updated successfully')
+            logwarning.logs_warning('Table row NOT updated successfully')
 
     def git_language_insert(self, table_name, app, app_id, loc, git_language_details):
         try:
@@ -164,11 +168,11 @@ class DbOperation:
             values = (app, app_id, git_language_details, loc)
             result = self.cursor.execute(query, values)
             if result.arraysize:
-                logs_msg('New value inserted successfully into the table')
+                logmsgs.logs_msg('New value inserted successfully into the table')
             else:
-                logs_warning('Failed to insert new value into the table')
+                logwarning.logs_warning('Failed to insert new value into the table')
         except Exception as e:
-            logs_error("Error: " + str(e))
+            logerror.logs_error("Error: " + str(e))
 
     def git_contributions_update(self, table_name=None, app_name=None, app_id=None, contributions_details=None):
         data_fetch = "select application_name from {0};".format(table_name)
@@ -184,16 +188,16 @@ class DbOperation:
             try:
                 self.insert_contributions(table_name, app_name, app_id, contributions_details)
             except Exception as e:
-                logs_error("Not inserted " + str(e))
+                logerror.logs_error("Not inserted " + str(e))
 
     def update_contributions(self, table_name, app_name, app_id, contributions_details):
         query = "UPDATE {0} SET app_id='{2}', contribution_details='{3}' WHERE application_name='{1}';".format(
             table_name, app_name, app_id, contributions_details)
         result = self.cursor.execute(query)
         if result.arraysize:
-            logs_msg('Table row updated successfully')
+            logmsgs.logs_msg('Table row updated successfully')
         else:
-            logs_warning('Table row NOT updated successfully')
+            logwarning.logs_warning('Table row NOT updated successfully')
 
     def insert_contributions(self, table_name, app_name, app_id, contributions_details):
         try:
@@ -201,11 +205,11 @@ class DbOperation:
             values = (app_name, app_id, contributions_details)
             result = self.cursor.execute(query, values)
             if result.arraysize:
-                logs_msg('New value inserted successfully into the table')
+                logmsgs.logs_msg('New value inserted successfully into the table')
             else:
-                logs_warning('Failed to insert new value into the table')
+                logwarning.logs_warning('Failed to insert new value into the table')
         except Exception as e:
-            logs_error("Error: " + str(e))
+            logerror.logs_error("Error: " + str(e))
 
     '''Main calling functions'''
 
@@ -227,7 +231,7 @@ class DbOperation:
                               psa_name=psa_name, es_user_name=es_user_name, es_name=es_name)
             self.sqliteConnection.commit()
         except sqlite3.Error as error:
-            logs_error(error)
+            logerror.logs_error(error)
 
     def git_base_data_table(self, app_name=None, app_id=None, git_details=None, session_owner=None):
         try:
@@ -238,7 +242,7 @@ class DbOperation:
                                        updated_at=updated_at, updated_by=session_owner)
             self.sqliteConnection.commit()
         except sqlite3.Error as error:
-            logs_error(error)
+            logerror.logs_error(error)
 
     def git_language_details(self, application_name=None, app_id=None, loc=None, git_language_details=None):
         try:
@@ -248,7 +252,7 @@ class DbOperation:
                                            git_language_details=git_language_details, loc=loc)
             self.sqliteConnection.commit()
         except sqlite3.Error as error:
-            logs_error(error)
+            logerror.logs_error(error)
 
     def git_contributor_details(self, app_name=None, app_id=None, contributions_details=None):
         try:
@@ -257,7 +261,7 @@ class DbOperation:
             self.git_contributions_update(table_name=git_contributions_table_name, app_name=app_name, app_id=app_id, contributions_details=contributions_details)
             self.sqliteConnection.commit()
         except sqlite3.Error as error:
-            logs_error(error)
+            logerror.logs_error(error)
 
     def threatmodel_data_operation(self):
         try:
@@ -266,7 +270,7 @@ class DbOperation:
             records = self.cursor.fetchall()
             return records
         except sqlite3.Error as error:
-            logs_error(error)
+            logerror.logs_error(error)
         finally:
             if self.sqliteConnection:
                 self.sqliteConnection.close()

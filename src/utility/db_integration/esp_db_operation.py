@@ -1,5 +1,4 @@
 from src.storage.sqlite import DbOperation
-from src.aop.logs.log_error import LogError
 from src.api_consumer.esp_data.esp_apps_list import *
 
 log_error = LogError()

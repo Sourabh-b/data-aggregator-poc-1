@@ -1,5 +1,7 @@
-from src.utility.log.logs import *
+from src.aop.logs.log_error import LogError
 import requests
+
+logerror = LogError()
 
 
 def partner_security_advocate_data(data, auth, headers):
@@ -12,7 +14,7 @@ def partner_security_advocate_data(data, auth, headers):
         security_architect_response = requests.get(security_architect_link, auth=auth, headers=headers)
         security_architect_data = security_architect_response.json()
     except Exception as psa_exception:
-        logs_error("PSA Service Failure......" + str(psa_exception))
+        logerror.logs_error("PSA Service Failure......" + str(psa_exception))
     return security_architect_data
 
 
@@ -29,7 +31,7 @@ def executive_sponsor(data, auth, headers):
         assigned_to_response = requests.get(assigned_to_link, auth=auth, headers=headers)
         assigned_to_data = assigned_to_response.json()
     except Exception as es_exception:
-        logs_error("ES Service Failure......" + str(es_exception))
+        logerror.logs_error("ES Service Failure......" + str(es_exception))
     return assigned_to_data
 
 

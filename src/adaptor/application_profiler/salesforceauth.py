@@ -1,8 +1,13 @@
-from src.utility.log.logs import logs_msg, logs_error, logs_warning
+from src.aop.logs.log_error import LogError
+from src.aop.logs.log_msg import LogMsgs
+from src.aop.logs.log_warning import LogWarning
 from src.adaptor.application_profiler.sf_data_query import SfOperations
-from src.api_consumer.git.git_automation import get_percentage
-from src.storage.sqlite import DbOperation
 import datetime
+
+
+logerror = LogError()
+logmsgs = LogMsgs()
+logwarning = LogWarning()
 
 
 # Get the app_id
@@ -12,7 +17,7 @@ def _app_id(sf, app_name):
         app_id = sf.query(query)
         return app_id
     except Exception as e:
-        logs_msg(str(e) + " No app found in Security Dashboard")
+        logmsgs.logs_msg(str(e) + " No app found in Security Dashboard")
 
 
 def get_git_id(sf, url):
@@ -41,7 +46,7 @@ def _user_id(sf, usr_name, first_name, last_name):
             usr_id_ = sf.Transient_system_user__c.create(data)
             usr_id = dict(usr_id_)['Id']
         except Exception as sf_error:
-            logs_error("Salesforce Error" + str(sf_error))
+            logerror.logs_error("Salesforce Error" + str(sf_error))
 
     return usr_id
 
@@ -54,7 +59,7 @@ def check_totalsize(sf, app_name):
         app_id = app_id[0]['Id']
         return app_id
     else:
-        logs_error("No app found in security dashboard with name {}".format(app_name))
+        logerror.logs_error("No app found in security dashboard with name {}".format(app_name))
         return None
 
 
@@ -65,9 +70,9 @@ def threatmodel_last_updated_date(updated_date, sf, app_name):
             tm_op = SfOperations()
             result = tm_op.threatmodel(sf=sf, updated_date=updated_date, app_id=app_id)
             if result == 204:
-                logs_msg("'Threatmodel details' is updated successfully for {}".format(app_name))
+                logmsgs.logs_msg("'Threatmodel details' is updated successfully for {}".format(app_name))
             else:
-                logs_warning("'Threatmodel details' of {} is NOT updated successfully.".format(app_name))
+                logwarning.logs_warning("'Threatmodel details' of {} is NOT updated successfully.".format(app_name))
 
 
 def deployed_on(install_type, sf, app_name):
@@ -76,9 +81,9 @@ def deployed_on(install_type, sf, app_name):
         it_op = SfOperations()
         result = it_op.deployed_on(sf, app_id, install_type)
         if result == 204:
-            logs_msg("'Deployed_On' details is updated successfully for {}".format(app_name))
+            logmsgs.logs_msg("'Deployed_On' details is updated successfully for {}".format(app_name))
         else:
-            logs_warning("'Deployed_On' details of {} is NOT updated successfully.".format(app_name))
+            logwarning.logs_warning("'Deployed_On' details of {} is NOT updated successfully.".format(app_name))
 
 
 def application_life_cycle(op_status, sf, app_name):
@@ -87,9 +92,9 @@ def application_life_cycle(op_status, sf, app_name):
         it_op = SfOperations()
         result = it_op.application_lyf_cycle(sf, app_id, op_status)
         if result == 204:
-            logs_msg("'Application_Lifecycle' details is updated successfully for {}".format(app_name))
+            logmsgs.logs_msg("'Application_Lifecycle' details is updated successfully for {}".format(app_name))
         else:
-            logs_warning("'Application_Lifecycle' details of {} is NOT updated successfully.".format(app_name))
+            logwarning.logs_warning("'Application_Lifecycle' details of {} is NOT updated successfully.".format(app_name))
 
 
 def application_owner(sf, usr_name, app_name, first_name, last_name):
@@ -100,9 +105,9 @@ def application_owner(sf, usr_name, app_name, first_name, last_name):
             ao_op = SfOperations()
             result = ao_op.application_owner(usr_id, sf, app_id)
             if result == 204:
-                logs_msg("'Application_Owner' details is updated successfully for {}".format(app_name))
+                logmsgs.logs_msg("'Application_Owner' details is updated successfully for {}".format(app_name))
             else:
-                logs_warning("'Application_Owner' details of {} is NOT updated successfully.".format(app_name))
+                logwarning.logs_warning("'Application_Owner' details of {} is NOT updated successfully.".format(app_name))
         else:
             pass
 
@@ -113,9 +118,9 @@ def business_criticality(business_criticality, sf, app_name):
         bc_op = SfOperations()
         result = bc_op.business_criticality(business_criticality, sf, app_id)
         if result == 204:
-            logs_msg("'Business_Criticality' details is updated successfully for {}".format(app_name))
+            logmsgs.logs_msg("'Business_Criticality' details is updated successfully for {}".format(app_name))
         else:
-            logs_warning("'Business_Criticality' details of {} is NOT updated successfully.".format(app_name))
+            logwarning.logs_warning("'Business_Criticality' details of {} is NOT updated successfully.".format(app_name))
 
 
 def psa_data_function(sf, app_name, psa_data, first_name, last_name):
@@ -126,11 +131,11 @@ def psa_data_function(sf, app_name, psa_data, first_name, last_name):
             psa_op = SfOperations()
             result = psa_op.partner_security_advocate_data(sf, app_id, usr_id)
             if result == 204:
-                logs_msg("'PSA' details is updated successfully for {}".format(app_name))
+                logmsgs.logs_msg("'PSA' details is updated successfully for {}".format(app_name))
             else:
-                logs_warning("'PSA' details of {} is NOT updated successfully.".format(app_name))
+                logwarning.logs_warning("'PSA' details of {} is NOT updated successfully.".format(app_name))
         else:
-            logs_warning("PSA User_Id not found for {0}".format(app_name))
+            logwarning.logs_warning("PSA User_Id not found for {0}".format(app_name))
 
 
 def es_data_function(sf, app_name, es_data, first_name, last_name):
@@ -141,11 +146,11 @@ def es_data_function(sf, app_name, es_data, first_name, last_name):
             es_op = SfOperations()
             result = es_op.executive_sponsor_data(sf, app_id, usr_id)
             if result == 204:
-                logs_msg("'ES' details is updated successfully for {}".format(app_name))
+                logmsgs.logs_msg("'ES' details is updated successfully for {}".format(app_name))
             else:
-                logs_warning("'ES' details of {} is NOT updated successfully.".format(app_name))
+                logwarning.logs_warning("'ES' details of {} is NOT updated successfully.".format(app_name))
         else:
-            logs_warning("ES User_Id not found for {0}".format(app_name))
+            logwarning.logs_warning("ES User_Id not found for {0}".format(app_name))
 
 
 def git_details_sdfc(commit_date, sf, app_id, url, git_repo, pr_date, contributors_count=0):
@@ -172,26 +177,14 @@ def git_details_sdfc(commit_date, sf, app_id, url, git_repo, pr_date, contributo
         sdfc_app_id = git_id_records[0]['Id']
         result = sf.Git_Details__c.update(sdfc_app_id, data)
         if result != 204:
-            logs_msg("App is NOT updated successfully.")
+            logmsgs.logs_msg("App is NOT updated successfully.")
     else:
         try:
             result = sf.Git_Details__c.create(data)
             if result != 200:
                 raise ConnectionError("App is updated successfully.")
         except Exception as sf_error:
-            logs_error("Salesforce Error " + str(sf_error))
-    # for language_ in languages:
-    #     language = language_[0]
-    #     loc_per_language = language_[1]
-    #     percentage = get_percentage(total_loc, loc_per_language)
-    #     git_repo_languages_sdfc(sf, url, language, db, loc_per_language, percentage, app_name)
-    # for contributor in contributor_details:
-    #     cec_id = contributor['author']
-    #     contributions = contributor['contributions']
-    #     commits = contributor['commits']
-    #     addition = contributor['addition']
-    #     deletion = contributor['deletion']
-    #     git_contributors_sfdc(sf, url, cec_id, contributions, commits, addition, deletion, app_name, db)
+            logerror.logs_error("Salesforce Error " + str(sf_error))
 
 
 def git_repo_languages_sdfc(sf, url, language, loc_per_language=0, percentage=0):
@@ -214,11 +207,11 @@ def git_repo_languages_sdfc(sf, url, language, loc_per_language=0, percentage=0)
             git_lang_id = git_id_records[0]['Id']
             result = sf.CX_Git_Languages__c.update(git_lang_id, data)
             if result == 204:
-                logs_msg("App updated Successfully")
+                logmsgs.logs_msg("App updated Successfully")
         else:
             result = sf.CX_Git_Languages__c.create(data)
             if result.get('records')[0]['success']:
-                logs_msg("App is created successfully..")
+                logmsgs.logs_msg("App is created successfully..")
 
 
 def get_total_loc(languages):
@@ -249,11 +242,11 @@ def git_contributors_sfdc(sf, url, cec_id, contributions, commits, addition, del
             contributor_id = git_id_records[0]['Id']
             result = sf.CX_Git_Contributors__c.update(contributor_id, data)
             if result == 204:
-                logs_msg("App updated Successfully")
+                logmsgs.logs_msg("App updated Successfully")
         else:
             result = sf.CX_Git_Contributors__c.create(data)
             if result.get('records')[0]['success']:
-                logs_msg("App Created")
+                logmsgs.logs_msg("App Created")
 
 
 def git_repositories_sdfc(sf, app_name, git_repo, url):
